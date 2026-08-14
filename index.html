@@ -490,14 +490,71 @@ footer{ padding:60px 7vw 40px; display:flex; justify-content:space-between; alig
 }
 @media (max-width: 768px) {
 
-  .categories {
+  .cat-row {
     position: relative;
-    background:
-      linear-gradient(
-        rgba(0, 0, 0, 0.50),
-        rgba(0, 0, 0, 0.65)
-      ),
-      url("images/6.png") center / cover no-repeat;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  /* الصورة الخاصة بكل Category */
+  .cat-row::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    opacity: 0.35;
+  }
+
+  /* Hair Cut */
+  .cat-row[data-id="hair-cut"]::before {
+    background-image: url("images/4.png");
+  }
+
+  /* Blow Dry */
+  .cat-row[data-id="blow-dry"]::before {
+    background-image: url("images/7.png");
+  }
+
+  /* Hair Color */
+  .cat-row[data-id="hair-color"]::before {
+    background-image: url("images/6.png");
+  }
+
+  /* Nails */
+  .cat-row[data-id="nails"]::before {
+    background-image: url("images/5.png");
+  }
+
+  /* Makeup */
+  .cat-row[data-id="makeup"]::before {
+    background-image: url("images/makeup.jpg");
+  }
+
+  /* Hair Treatment */
+  .cat-row[data-id="hair-treatment"]::before {
+    background-image: url("images/hair-treatment.jpg");
+  }
+
+}
+@media (max-width: 768px) {
+
+  .cat-row::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+      90deg,
+      rgba(0,0,0,0.88),
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.75)
+    );
   }
 
 }
