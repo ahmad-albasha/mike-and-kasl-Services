@@ -141,17 +141,16 @@ button{font-family:inherit; background:none; border:none; color:inherit; cursor:
   animation: heroDrift 22s ease-in-out infinite alternate;
   filter:saturate(1.15);
 }
-.hero-bg {
-  background-image:
-    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.5)),
-    url("images/AJ101518.jpeg");
-}
-
+/* Mobile */
 @media (max-width: 768px) {
   .hero-bg {
-    background-image:
-      linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.5)),
-      url("images/AJ101518-mobile.jpeg");
+    inset: 0;
+
+    background-size: 100% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    background-color: #050505;
   }
 }
 @keyframes heroDrift{ 0%{ transform:scale(1.06) rotate(0deg);} 100%{ transform:scale(1.16) rotate(2deg);} }
