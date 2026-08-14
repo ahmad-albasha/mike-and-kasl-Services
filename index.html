@@ -934,7 +934,31 @@ if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
   });
 
 }
+// ================= MOBILE TOUCH =================
+if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
 
+  document.querySelectorAll('.cat-row').forEach(row => {
+
+    row.addEventListener('touchstart', () => {
+
+      const categoryId = row.dataset.id;
+      const image = CATEGORY_IMAGES[categoryId];
+
+      if (image) {
+        lensBg.style.backgroundImage = `url("${image}")`;
+        lensBg.style.backgroundPosition = 'center';
+        lensBg.style.backgroundSize = 'cover';
+        lensBg.style.backgroundRepeat = 'no-repeat';
+      }
+
+      lensLabel.textContent = 'EXPLORE';
+      lens.classList.add('show');
+
+    }, { passive: true });
+
+  });
+
+}
 /* ============ TEAM TRACK ============ */
 const teamTrack = document.getElementById('teamTrack');
 const teamNames = ['26','27','28','29','30','31','32','33','34','35','36'];
