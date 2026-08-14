@@ -798,14 +798,20 @@ const LENS_GRADIENTS = [
   'radial-gradient(circle at 40% 70%, #A99A8C, #080808 70%)',
   'radial-gradient(circle at 60% 60%, #D4AF72, #C98B8B 60%, #080808 100%)',
 ];
-
+const CATEGORY_IMAGES = {
+    'hair-cut': 'images/4.png',
+    'blow-dry': 'images/7.png',
+    'hair-color': 'images/6.png',
+    'nails': 'images/5.png',
+    'makeup': 'images/makeup.jpg',
+    'hair-treatment': 'images/hair-treatment.jpg'
+};
 /* ============ RENDER CATEGORY LIST ============ */
 const catList = document.getElementById('catList');
 CATEGORIES.forEach((c,i)=>{
   const row = document.createElement('div');
   row.className = 'cat-row';
   row.dataset.id = c.id;
-  row.dataset.lens = i % LENS_GRADIENTS.length;
   row.innerHTML = `
     <div class="cat-num">${c.num}</div>
     <div class="cat-namewrap">
@@ -886,25 +892,52 @@ if(location.hash.startsWith('#/services/')) openCategory(location.hash.split('/'
 const lens = document.getElementById('catLens');
 const lensBg = document.getElementById('catLensBg');
 const lensLabel = document.getElementById('catLensLabel');
+
 let lensActive = false;
-if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-  document.querySelectorAll('.cat-row').forEach(row=>{
-    row.addEventListener('mouseenter', ()=>{
+
+if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+
+  document.querySelectorAll('.cat-row').forEach(row => {
+
+    row.addEventListener('mouseenter', () => {
+
       lensActive = true;
       lens.classList.add('show');
-      lensBg.style.background = LENS_GRADIENTS[row.dataset.lens];
+
+      // الحصول على ID الخاص بالـ Category
+      const categoryId = row.dataset.id;
+
+      // الحصول على الصورة المرتبطة بها
+      const image = CATEGORY_IMAGES[categoryId];
+
+      if (image) {
+        lensBg.style.backgroundImage = `url("${image}")`;
+        lensBg.style.backgroundPosition = 'center';
+        lensBg.style.backgroundSize = 'cover';
+        lensBg.style.backgroundRepeat = 'no-repeat';
+      } else {
+        // إذا لم توجد صورة، استخدم Gradient كاحتياط
+        lensBg.style.background =
+          LENS_GRADIENTS[row.dataset.lens];
+      }
+
       lensLabel.textContent = 'EXPLORE';
     });
-    row.addEventListener('mouseleave', ()=>{
+
+    row.addEventListener('mouseleave', () => {
+
       lensActive = false;
       lens.classList.remove('show');
+
     });
+
   });
+
 }
 
 /* ============ TEAM TRACK ============ */
 const teamTrack = document.getElementById('teamTrack');
-const teamNames = ['26','27','28','29'];
+const teamNames = ['26','27','28','29','30','31','32','33','34','35','36'];
 teamNames.concat(teamNames).forEach((n,i)=>{
   const card = document.createElement('div');
   card.className = 'team-card';
