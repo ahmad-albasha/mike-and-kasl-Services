@@ -377,21 +377,179 @@ button{font-family:inherit; background:none; border:none; color:inherit; cursor:
     object-fit:cover;
 }
 
-/* ============ FAQ ============ */
-.faq-item{ border-top:1px solid var(--line); }
-.faq-list .faq-item:last-child{ border-bottom:1px solid var(--line); }
-.faq-q{
-  width:100%; text-align:right; direction:rtl; display:flex; align-items:center; justify-content:space-between;
-  gap:24px; padding:30px 4px; cursor:none;
-}
-.faq-q-text{ font-family:var(--ar); font-size:clamp(17px,2.6vw,25px); font-weight:500; }
-.faq-num{ font-family:var(--display); font-size:13px; color:var(--taupe); direction:ltr; }
-.faq-plus{ width:34px; height:34px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center;
-  justify-content:center; font-size:16px; flex:none; transition:transform .4s var(--ease), background .4s var(--ease), color .4s var(--ease); }
-.faq-item.open .faq-plus{ transform:rotate(135deg); background:var(--champagne); color:var(--black); border-color:var(--champagne); }
-.faq-a{ max-height:0; overflow:hidden; transition:max-height .6s var(--ease); }
-.faq-a-inner{ padding:0 4px 34px; direction:rtl; font-family:var(--ar); font-size:15px; line-height:2.1; color:var(--taupe); max-width:820px; margin-left:auto; }
-.faq-item.open .faq-q-text{ color:var(--champagne); }
+/* ---- Language toggle: the signature element ---- */
+  .lang-toggle{
+    position: relative;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px;
+    isolation: isolate;
+  }
+ 
+  .lang-toggle .lang-thumb{
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    border-radius: 999px;
+    background: var(--accent);
+    transition: transform 0.42s cubic-bezier(.65,0,.35,1);
+    z-index: 0;
+  }
+  html[dir="rtl"] .lang-toggle .lang-thumb{
+    left: auto;
+    right: 4px;
+  }
+  .lang-toggle[data-lang="ar"] .lang-thumb{
+    transform: translateX(100%);
+  }
+  html[dir="rtl"] .lang-toggle[data-lang="en"] .lang-thumb{
+    transform: translateX(100%);
+  }
+  html[dir="rtl"] .lang-toggle[data-lang="ar"] .lang-thumb{
+    transform: translateX(0);
+  }
+ 
+  .lang-toggle button{
+    position: relative;
+    z-index: 1;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family:'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 9px 20px;
+    border-radius: 999px;
+    color: var(--ink-muted);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+  .lang-toggle button[aria-pressed="true"]{
+    color: #16130f;
+  }
+  .lang-toggle button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .lang-toggle .lang-ar-label{
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+  }
+ 
+  /* ---- FAQ list ---- */
+  .faq-list{
+    display:flex;
+    flex-direction:column;
+  }
+ #faq{ background:var(--bg); color:var(--ink); }
+#faq, #faq *{ box-sizing:border-box; }
+  .faq-item{
+    border-top: 1px solid var(--line);
+  }
+  .faq-item:last-child{
+    border-bottom: 1px solid var(--line);
+  }
+ 
+  .faq-q{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 26px 4px;
+    color: var(--ink);
+  }
+  html[dir="rtl"] .faq-q{ text-align: right; }
+ 
+  .faq-num{
+    font-family:'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    flex: 0 0 auto;
+    width: 26px;
+  }
+  html[dir="rtl"] .faq-num{
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+  }
+ 
+  .faq-q-text{
+    flex: 1 1 auto;
+    font-family:'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  html[dir="rtl"] .faq-q-text{
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    font-size: 16.5px;
+  }
+ 
+  .faq-plus{
+    flex: 0 0 auto;
+    font-family:'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink-muted);
+    transition: transform 0.35s cubic-bezier(.65,0,.35,1), color 0.3s ease;
+  }
+  .faq-item.open .faq-plus{
+    transform: rotate(135deg);
+    color: var(--accent);
+  }
+ 
+  .faq-a{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(.65,0,.35,1);
+  }
+ 
+  .faq-a-inner{
+    font-family:'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    padding: 0 4px 28px 50px;
+  }
+  html[dir="rtl"] .faq-a-inner{
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    padding: 0 50px 28px 4px;
+  }
+ 
+  /* crossfade when switching languages */
+  .faq-list.switching .faq-q-text,
+  .faq-list.switching .faq-a-inner{
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+ 
+  @media (prefers-reduced-motion: reduce){
+    .lang-toggle .lang-thumb,
+    .faq-plus,
+    .faq-a,
+    .faq-list.switching .faq-q-text,
+    .faq-list.switching .faq-a-inner{
+      transition: none !important;
+    }
+  }
+ 
+  @media (max-width: 560px){
+    .section{ padding: 88px 20px; }
+    .section-head{ align-items: flex-start; }
+    .faq-a-inner{ padding-left: 46px; }
+    html[dir="rtl"] .faq-a-inner{ padding-right: 46px; }
+  }
+
 
 /* ============ WHATSAPP CTA ============ */
 .wa{
@@ -530,14 +688,40 @@ footer{ padding:60px 7vw 40px; display:flex; justify-content:space-between; alig
     background-image: url("images/5.png");
   }
 
-  /* Makeup */
-  .cat-row[data-id="makeup"]::before {
-    background-image: url("images/makeup.jpg");
-  }
-
   /* Hair Treatment */
   .cat-row[data-id="hair-treatment"]::before {
-    background-image: url("images/hair-treatment.jpg");
+    background-image: url("images/17.png");
+
+  }
+  /* Hair Extenions */
+
+  .cat-row[data-id="hair-extenions"]::before {
+    background-image: url("images/16.png");
+  }
+
+  /* Facials */
+  .cat-row[data-id="facials"]::before {
+    background-image: url("images/8.jpeg");
+  }
+
+  /*Threading */
+  .cat-row[data-id="threading"]::before {
+    background-image: url("images/13.jpeg");
+  }
+
+  /*Brows&Lashes */
+  .cat-row[data-id="brows-lashes"]::before {
+    background-image: url("images/15.jpeg");
+  }
+
+  /*Microblading */
+  .cat-row[data-id="microblading"]::before {
+    background-image: url("images/14.jpg");
+  }
+
+  /*Bridal & Special Occasions */
+  .cat-row[data-id="bridal-special-occasions"]::before {
+    background-image: url("images/15.jpg");
   }
 
 }
@@ -874,8 +1058,13 @@ const CATEGORY_IMAGES = {
     'blow-dry': 'images/7.png',
     'hair-color': 'images/6.png',
     'nails': 'images/5.png',
-    'makeup': 'images/makeup.jpg',
-    'hair-treatment': 'images/hair-treatment.jpg'
+    'hair-treatment': 'images/17.png',
+    'hair-extensions': 'images/16.png',
+    'facials': 'images/8.jpeg',
+    'threading': 'images/13.jpeg',
+    'brows-lashes': 'images/15.jpeg',
+    'microblading': 'images/14.jpg',
+    'bridal-special-occasions': 'images/15.jpg'
 };
 /* ============ RENDER CATEGORY LIST ============ */
 const catList = document.getElementById('catList');
@@ -1019,7 +1208,7 @@ card.innerHTML = `
 });
 
 /* ============ FAQ ============ */
-const FAQS = [
+/*const FAQS = [
   ['كيف أعرف أي لون شعر يناسبني؟','لا نختار اللون من الصورة فقط. نأخذ بعين الاعتبار لون البشرة، لون العينين، حالة الشعر، اللون الحالي ونمط حياتك، ثم نقترح الدرجة التي تناسبك ويمكن تنفيذها بأمان على شعرك.'],
   ['هل يمكنني الحصول على نفس لون الشعر الموجود في الصورة؟','نستخدم الصورة كـ Inspiration وليس كضمان لنتيجة مطابقة 100%. النتيجة تعتمد على لون شعرك الحالي، تاريخه، كثافته وحالته. بعد الاستشارة نوضح لك ما يمكن الوصول إليه وعدد الجلسات المتوقعة.'],
   ['لماذا بعض الأسعار تبدأ بـ "From"؟','لأن بعض الخدمات تعتمد على طول الشعر، كثافته، كمية المنتج المطلوبة، حالة الشعر والتقنية المستخدمة. يتم تأكيد السعر النهائي بعد تقييم الشعر وقبل بدء الخدمة.'],
@@ -1057,6 +1246,136 @@ FAQS.forEach(([q,a],i)=>{
     }
   });
 });
+*/
+(function () {
+  const CONTENT = {
+    en: {
+      title: 'Beauty,<br><i>Explained.</i>',
+      desc: 'Answers, translated with the same care as your service.',
+      faqs: [
+        ['How do I know which hair color suits me?',
+        "We don't choose a color from a photo alone. We consider your skin tone, eye color, hair condition, current color, and lifestyle, then recommend a shade that suits you and can be achieved safely on your hair."],
+        ['Can I get the exact hair color from a photo?',
+        'We use your reference photo as inspiration, not a guarantee of an identical result. The outcome depends on your current hair color, its history, density, and condition. After the consultation, we\u2019ll explain what\u2019s achievable and how many sessions it may take.'],
+        ['Why do some prices start with "From"?',
+        'Because certain services depend on hair length, density, the amount of product needed, hair condition, and technique used. The final price is confirmed after assessing your hair, before the service begins.'],
+        ['How do I know which treatment my hair needs?',
+        "Not all dry hair needs the same treatment. We first assess dryness, damage, porosity, elasticity, and scalp condition, then choose the most suitable treatment rather than picking one at random."],
+        ['Can I get Color and Keratin or Smoothing on the same day?',
+        "Not always. It depends on your hair's condition and the type of color and treatment used. Hair health comes first, so we may recommend spacing the two services apart if we feel your hair can't handle both."],
+        ['How long do hair services take?',
+        'It varies by service and by your hair\u2019s length and thickness. A Blow Dry typically takes about 30\u201360 minutes, while Color, Highlights, or Balayage can take several hours. We\u2019ll give you an estimated time when you choose your service.'],
+        ['How long does color or toner last?',
+        "It depends on the type of color, your hair's condition, how often you wash it, and the products you use at home. Toner especially needs maintenance to preserve its shade and shine, and we'll let you know when it's time to refresh it."],
+        ["What if I don't know which service to book?",
+        "Don't worry about the service name. Just tell us what you'd like to change or what's concerning you, and our team will help you choose the right service."],
+        ['Do I need a consultation before a major change or hair extensions?',
+        'We strongly recommend it for major transformations, color correction, complex balayage, hair extensions, and bridal looks. A consultation helps us determine the result, timing, cost, and the right plan before we begin.'],
+        ['Can you decline to perform a service I request?',
+        "Yes, if we believe a service could seriously damage your hair or the desired result isn't realistic in a single session. Our goal isn't just for your hair to look beautiful when you leave the salon, but for it to stay healthy and beautiful afterward too."],
+      ]
+    },
+    ar: {
+      title: 'الجمال،<br><i>موضّح.</i>',
+      desc: 'إجابات، مُترجمة بالعناية نفسها التي تحظى بها خدمتك.',
+      faqs: [
+        ['كيف أعرف أي لون شعر يناسبني؟',
+        'لا نختار اللون من الصورة فقط. نأخذ بعين الاعتبار لون البشرة، لون العينين، حالة الشعر، اللون الحالي ونمط حياتك، ثم نقترح الدرجة التي تناسبك ويمكن تنفيذها بأمان على شعرك.'],
+        ['هل يمكنني الحصول على نفس لون الشعر الموجود في الصورة؟',
+        'نستخدم الصورة كمصدر إلهام وليس كضمان لنتيجة مطابقة تماماً. النتيجة تعتمد على لون شعرك الحالي، تاريخه، كثافته وحالته. بعد الاستشارة نوضح لك ما يمكن الوصول إليه وعدد الجلسات المتوقعة.'],
+        ['لماذا تبدأ بعض الأسعار بكلمة "From"؟',
+        'لأن بعض الخدمات تعتمد على طول الشعر، كثافته، كمية المنتج المطلوبة، حالة الشعر والتقنية المستخدمة. يتم تأكيد السعر النهائي بعد تقييم الشعر وقبل بدء الخدمة.'],
+        ['كيف أعرف أي علاج يحتاجه شعري؟',
+        'ليس كل شعر جاف يحتاج العلاج نفسه. نقوم أولاً بتقييم الجفاف، التلف، المسامية، المرونة وفروة الرأس، ثم نختار العلاج الأنسب بدل اختياره عشوائياً.'],
+        ['هل يمكنني عمل صبغة وكيراتين أو سموذنغ في اليوم نفسه؟',
+        'ليس دائماً. يعتمد ذلك على حالة الشعر ونوع الصبغة والعلاج المستخدم. صحة الشعر تأتي أولاً، لذلك قد ننصح بالفصل بين الخدمتين إذا رأينا أن الشعر لا يتحمّل.'],
+        ['كم تستغرق خدمات الشعر؟',
+        'تختلف المدة حسب الخدمة وطول وكثافة الشعر. يستغرق الـBlow Dry عادةً من 30 إلى 60 دقيقة تقريباً، بينما قد تحتاج الصبغة أو الهايلايت أو البالياج عدة ساعات. سنعطيك وقتاً تقريبياً عند اختيار خدمتك.'],
+        ['كم تدوم نتيجة اللون أو التونر؟',
+        'تختلف المدة حسب نوع اللون، حالة الشعر، عدد مرات الغسيل والمنتجات المستخدمة في المنزل. يحتاج التونر خصوصاً إلى عناية دورية للحفاظ على درجته ولمعانه، وسنخبرك بالموعد المناسب لتجديده.'],
+        ['ماذا أفعل إذا كنت لا أعرف أي خدمة أحجز؟',
+        'لا داعي للقلق بشأن اسم الخدمة. أخبرينا فقط بما ترغبين بتغييره أو ما يزعجك، وسيساعدك فريقنا في اختيار الخدمة المناسبة.'],
+        ['هل أحتاج إلى استشارة قبل تغيير كبير أو تركيب إكستنشن؟',
+        'ننصح بها بشدة في التغييرات الكبيرة، تصحيح الألوان، البالياج المعقد، إكستنشن الشعر وإطلالات العرس. تساعدنا الاستشارة على تحديد النتيجة والوقت والتكلفة والخطة المناسبة قبل البدء.'],
+        ['هل يمكنكم رفض تنفيذ خدمة أطلبها؟',
+        'نعم، إذا رأينا أن الخدمة قد تُلحق ضرراً كبيراً بشعرك أو أن النتيجة المطلوبة غير واقعية ضمن جلسة واحدة. هدفنا ليس فقط أن يبدو شعرك جميلاً عند مغادرتك الصالون، بل أن يبقى صحياً وجميلاً بعد ذلك أيضاً.'],
+      ]
+    }
+  };
+const faqList  = document.getElementById('faqList');
+const faqTitle = document.getElementById('faqTitle');
+const faqDesc  = document.getElementById('faqDesc');
+const toggle   = document.getElementById('langToggle');
+const btnEn    = document.getElementById('btnEn');
+const btnAr    = document.getElementById('btnAr');
+ 
+if (!faqList || !faqTitle || !faqDesc || !toggle || !btnEn || !btnAr) {
+    console.warn('FAQ toggle: عناصر ناقصة، تم تجاهل التشغيل بدون التأثير على باقي الصفحة.');
+    return; // ما بيكمل، وما بيرمي خطأ يوقف باقي السكربتات
+  }
+let currentLang = 'en';
+ 
+function renderFaqs(lang){
+  faqList.innerHTML = '';
+  CONTENT[lang].faqs.forEach(([q, a], i) => {
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = `
+      <button class="faq-q">
+        <span class="faq-num">${String(i + 1).padStart(2, '0')}</span>
+        <span class="faq-q-text">${q}</span>
+        <span class="faq-plus">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">${a}</div></div>
+    `;
+    faqList.appendChild(item);
+ 
+    const btn = item.querySelector('.faq-q');
+    const panel = item.querySelector('.faq-a');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      faqList.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+}
+
+function setLanguage(lang){
+  if (lang === currentLang) return;
+  currentLang = lang;
+ 
+  toggle.dataset.lang = lang;
+  btnEn.setAttribute('aria-pressed', String(lang === 'en'));
+  btnAr.setAttribute('aria-pressed', String(lang === 'ar'));
+ 
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+ 
+  faqList.classList.add('switching');
+  window.setTimeout(() => {
+    faqTitle.innerHTML = CONTENT[lang].title;
+    faqDesc.textContent = CONTENT[lang].desc;
+    renderFaqs(lang);
+    faqList.classList.remove('switching');
+  }, 160);
+}
+
+btnEn.addEventListener('click', () => setLanguage('en'));
+btnAr.addEventListener('click', () => setLanguage('ar'));
+
+  renderFaqs('en');
+})();
+
+
+
+
+
 
 /* ============ CUSTOM CURSOR ============ */
 const cursor = document.getElementById('cursor');
