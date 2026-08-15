@@ -483,35 +483,39 @@
   // "reward" is the polished phrase used in the WhatsApp message.
   // "rare" marks the two grand prizes (low weight, celebratory modal).
   // "tryAgain" marks the no-prize outcome (no code / no WhatsApp send).
+  // Weights sum to 100 when every prize is unlocked, with Try Again fixed at
+  // 80 — i.e. Try Again lands ~80% of spins regardless of price tier, since
+  // it's always in the eligible pool while the other 9 only compete for the
+  // remaining 20%.
   const SEGMENTS = [
-    { title:"50 AED CREDIT", icon:"icon-tag", weight:12,
+    { title:"50 AED CREDIT", icon:"icon-tag", weight:4,
       desc:"A 50 AED beauty credit toward your next visit.",
       reward:"a 50 AED beauty credit toward your next visit" },
-    { title:"FREE TREATMENT", icon:"icon-bottle", weight:11,
+    { title:"FREE TREATMENT", icon:"icon-bottle", weight:3,
       desc:"A free hair treatment upgrade with your next hair service.",
       reward:"a free hair treatment upgrade on your next hair service" },
-    { title:"35% OFF NAILS", icon:"icon-nail", weight:9,
-      desc:"35% off a nail service upgrade.",
-      reward:"35% off a nail service upgrade" },
-    { title:"FREE TONER", icon:"icon-drop", weight:8,
+    { title:"20% OFF NAILS", icon:"icon-nail", weight:3,
+      desc:"20% off a nail service upgrade.",
+      reward:"20% off a nail service upgrade" },
+    { title:"FREE TONER", icon:"icon-drop", weight:2,
       desc:"A free toner upgrade with your next hair color service.",
       reward:"a free toner upgrade with your next hair color service" },
-    { title:"10% OFF BILL", icon:"icon-bag", weight:7,
+    { title:"10% OFF BILL", icon:"icon-bag", weight:2,
       desc:"10% off your entire next visit.",
       reward:"10% off your entire next visit" },
-    { title:"TRY AGAIN", icon:"icon-refresh", weight:22,
+    { title:"TRY AGAIN", icon:"icon-refresh", weight:80,
       desc:"So close! Spin the wheel once more.",
       reward:"", tryAgain:true },
-    { title:"100 AED FACIAL", icon:"icon-face", weight:8,
+    { title:"100 AED FACIAL", icon:"icon-face", weight:2,
       desc:"100 AED off a facial treatment.",
       reward:"100 AED off a facial treatment" },
-    { title:"MIKE MAKEOVER", icon:"icon-hair", weight:3,
+    { title:"MIKE MAKEOVER", icon:"icon-hair", weight:1,
       desc:"A full Mike Makeover — color, cut & styling.",
       reward:"a full Mike Makeover — color, cut & styling", rare:true },
-    { title:"15% OFF MAKEUP", icon:"icon-makeup", weight:7,
+    { title:"15% OFF MAKEUP", icon:"icon-makeup", weight:2,
       desc:"15% off a makeup upgrade.",
       reward:"15% off a makeup upgrade" },
-    { title:"250 AED CREDIT", icon:"icon-gift", weight:2,
+    { title:"250 AED CREDIT", icon:"icon-gift", weight:1,
       desc:"A 250 AED beauty credit toward your full bill.",
       reward:"a 250 AED beauty credit toward your full bill", rare:true }
   ];
@@ -524,7 +528,7 @@
   const TIERS = [
     { threshold:300,  idx:0 }, // 50 AED credit
     { threshold:350,  idx:1 }, // free treatment upgrade
-    { threshold:600,  idx:2 }, // 35% off nails
+    { threshold:600,  idx:2 }, // 20% off nails
     { threshold:650,  idx:6 }, // 100 AED facial
     { threshold:700,  idx:3 }, // free toner
     { threshold:850,  idx:8 }, // 15% off makeup
@@ -700,10 +704,10 @@
   }
 
   function buildMessage(seg, code){
-    return "Hi there! Thank you for visiting MIKE, Beauty Expert by Mike.\n\n"
+    return "Hi there!  Thank you for visiting MIKAI, Beauty Expert by Mike.\n\n"
       + "You spun our Beauty Wheel and won " + seg.reward + "! \n\n"
       + "Your reward code is *" + code + "* — simply show us this message on your next visit and we'll take care of the rest.\n\n"
-      + "We can't wait to welcome you back and pamper you again soon. \n— The MIKE Team";
+      + "We can't wait to welcome you back and pamper you again soon. \n— The MIKAI Team";
   }
 
   function showResult(seg, rare){
