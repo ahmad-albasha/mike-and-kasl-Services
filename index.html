@@ -378,177 +378,216 @@ button{font-family:inherit; background:none; border:none; color:inherit; cursor:
 }
 
 /* ---- Language toggle: the signature element ---- */
-  .lang-toggle{
-    position: relative;
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 4px;
-    isolation: isolate;
-  }
+  .section-head-text{ flex: 1 1 380px; }
  
-  .lang-toggle .lang-thumb{
-    position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 4px;
-    width: calc(50% - 4px);
-    border-radius: 999px;
-    background: var(--accent);
-    transition: transform 0.42s cubic-bezier(.65,0,.35,1);
-    z-index: 0;
-  }
-  html[dir="rtl"] .lang-toggle .lang-thumb{
-    left: auto;
-    right: 4px;
-  }
-  .lang-toggle[data-lang="ar"] .lang-thumb{
-    transform: translateX(100%);
-  }
-  html[dir="rtl"] .lang-toggle[data-lang="en"] .lang-thumb{
-    transform: translateX(100%);
-  }
-  html[dir="rtl"] .lang-toggle[data-lang="ar"] .lang-thumb{
-    transform: translateX(0);
-  }
+/* ---- FAQ base styling ---- */
+.faq-item{ border-top: 1px solid var(--line); }
+.faq-item:last-child{ border-bottom: 1px solid var(--line); }
  
-  .lang-toggle button{
-    position: relative;
-    z-index: 1;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-family:'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    padding: 9px 20px;
-    border-radius: 999px;
-    color: var(--ink-muted);
-    transition: color 0.3s ease;
-    white-space: nowrap;
-  }
-  .lang-toggle button[aria-pressed="true"]{
-    color: #16130f;
-  }
-  .lang-toggle button:focus-visible{
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-  .lang-toggle .lang-ar-label{
-    font-family:'IBM Plex Sans Arabic', sans-serif;
-  }
+.faq-q{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 32px 4px;
+  color: var(--ivory);
+  transition: padding .4s var(--ease);
+}
  
-  /* ---- FAQ list ---- */
-  .faq-list{
-    display:flex;
-    flex-direction:column;
-  }
- #faq{ background:var(--bg); color:var(--ink); }
-#faq, #faq *{ box-sizing:border-box; }
-  .faq-item{
-    border-top: 1px solid var(--line);
-  }
-  .faq-item:last-child{
-    border-bottom: 1px solid var(--line);
-  }
+.faq-num{
+  flex: 0 0 auto;
+  width: 30px;
+  font-family: var(--display);
+  font-size: 14px;
+  color: var(--taupe);
+  transition: color .35s var(--ease);
+}
  
-  .faq-q{
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    padding: 26px 4px;
-    color: var(--ink);
-  }
-  html[dir="rtl"] .faq-q{ text-align: right; }
+.faq-q-text{
+  flex: 1 1 auto;
+  font-family: var(--display);
+  font-size: clamp(19px, 2.3vw, 30px);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -.005em;
+  transition: color .35s var(--ease);
+}
  
-  .faq-num{
-    font-family:'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    flex: 0 0 auto;
-    width: 26px;
-  }
-  html[dir="rtl"] .faq-num{
-    font-family:'IBM Plex Sans Arabic', sans-serif;
-  }
+.faq-plus{
+  flex: 0 0 auto;
+  font-family: var(--body);
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--taupe);
+  transition: transform .4s var(--ease), color .35s var(--ease);
+}
  
-  .faq-q-text{
-    flex: 1 1 auto;
-    font-family:'Inter', sans-serif;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-  html[dir="rtl"] .faq-q-text{
-    font-family:'IBM Plex Sans Arabic', sans-serif;
-    font-size: 16.5px;
-  }
+/* هوفر: يتحول للون الذهبي */
+.faq-q:hover .faq-q-text,
+.faq-q:hover .faq-num,
+.faq-q:hover .faq-plus{
+  color: var(--champagne);
+}
  
-  .faq-plus{
-    flex: 0 0 auto;
-    font-family:'Inter', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--ink-muted);
-    transition: transform 0.35s cubic-bezier(.65,0,.35,1), color 0.3s ease;
-  }
-  .faq-item.open .faq-plus{
-    transform: rotate(135deg);
-    color: var(--accent);
-  }
+.faq-item.open .faq-q-text,
+.faq-item.open .faq-num,
+.faq-item.open .faq-plus{
+  color: var(--champagne);
+}
+.faq-item.open .faq-plus{ transform: rotate(135deg); }
  
-  .faq-a{
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(.65,0,.35,1);
-  }
+.faq-a{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s var(--ease);
+}
  
-  .faq-a-inner{
-    font-family:'Inter', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--ink-muted);
-    padding: 0 4px 28px 50px;
-  }
-  html[dir="rtl"] .faq-a-inner{
-    font-family:'IBM Plex Sans Arabic', sans-serif;
-    padding: 0 50px 28px 4px;
-  }
+.faq-a-inner{
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.9;
+  font-weight: 300;
+  color: var(--taupe);
+  padding: 0 4px 34px 54px;
+  max-width: 640px;
+}
  
-  /* crossfade when switching languages */
+/* ---- Language toggle ---- */
+.lang-toggle{
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(245,240,234,.06);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px;
+  isolation: isolate;
+}
+.lang-toggle .lang-thumb{
+  position: absolute;
+  top: 4px; bottom: 4px; left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--champagne);
+  transition: transform .42s var(--ease);
+  z-index: 0;
+}
+.lang-toggle[data-lang="ar"] .lang-thumb{ transform: translateX(100%); }
+.lang-toggle button{
+  position: relative; z-index: 1;
+  border: none; background: transparent; cursor: pointer;
+  font-family: var(--body); font-size: 13px; font-weight: 500;
+  letter-spacing: .03em; padding: 9px 20px; border-radius: 999px;
+  color: var(--taupe); transition: color .3s ease; white-space: nowrap;
+}
+.lang-toggle button[aria-pressed="true"]{ color: var(--black); }
+.lang-toggle button:focus-visible{ outline: 2px solid var(--champagne); outline-offset: 2px; }
+.lang-toggle .lang-ar-label{ font-family: var(--ar); }
+ 
+/* ---- RTL: مطبّق فقط على #faqList، مش على الصفحة كلها ---- */
+#faqList[dir="rtl"] .faq-q{
+  text-align: right;
+  flex-direction: row-reverse;
+}
+#faqList[dir="rtl"] .faq-q-text{ font-family: var(--ar); font-size: clamp(18px, 2.2vw, 27px); }
+#faqList[dir="rtl"] .faq-num{ font-family: var(--ar); }
+#faqList[dir="rtl"] .faq-a-inner{
+  font-family: var(--ar);
+  text-align: right;
+  padding: 0 54px 34px 4px;
+}
+ 
+/* crossfade عند تبديل اللغة */
+.faq-list.switching .faq-q-text,
+.faq-list.switching .faq-a-inner{
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+ 
+@media (prefers-reduced-motion: reduce){
+  .lang-toggle .lang-thumb, .faq-plus, .faq-a,
+  .faq-list.switching .faq-q-text, .faq-list.switching .faq-a-inner{
+    transition: none !important;
+  }
+}
+ 
+ 
+.lang-toggle{
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  background: color-mix(in srgb, var(--black) 85%, var(--ivory) 15%);
+  border: 1px solid color-mix(in srgb, var(--ivory) 12%, transparent);
+  border-radius: 999px;
+  padding: 4px;
+  isolation: isolate;
+}
+ 
+.lang-toggle .lang-thumb{
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--champagne);
+  transition: transform 0.42s cubic-bezier(.65,0,.35,1);
+  z-index: 0;
+}
+html[dir="rtl"] .lang-toggle .lang-thumb{ left: auto; right: 4px; }
+.lang-toggle[data-lang="ar"] .lang-thumb{ transform: translateX(100%); }
+html[dir="rtl"] .lang-toggle[data-lang="en"] .lang-thumb{ transform: translateX(100%); }
+html[dir="rtl"] .lang-toggle[data-lang="ar"] .lang-thumb{ transform: translateX(0); }
+ 
+.lang-toggle button{
+  position: relative;
+  z-index: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 9px 20px;
+  border-radius: 999px;
+  color: var(--taupe);
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+.lang-toggle button[aria-pressed="true"]{ color: var(--black); }
+.lang-toggle button:focus-visible{ outline: 2px solid var(--champagne); outline-offset: 2px; }
+.lang-toggle .lang-ar-label{ font-family:'IBM Plex Sans Arabic', var(--body); }
+ 
+.faq-q{ text-align: left; }
+html[dir="rtl"] .faq-q{ text-align: right; }
+html[dir="rtl"] .faq-q-text{ font-family:'IBM Plex Sans Arabic', var(--body); }
+html[dir="rtl"] .faq-num{ font-family:'IBM Plex Sans Arabic', var(--body); }
+html[dir="rtl"] .faq-a-inner{ font-family:'IBM Plex Sans Arabic', var(--body); padding: 0 50px 28px 4px; }
+ 
+.faq-list.switching .faq-q-text,
+.faq-list.switching .faq-a-inner{
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+ 
+@media (prefers-reduced-motion: reduce){
+  .lang-toggle .lang-thumb,
+  .faq-plus,
+  .faq-a,
   .faq-list.switching .faq-q-text,
   .faq-list.switching .faq-a-inner{
-    opacity: 0;
-    transition: opacity 0.18s ease;
+    transition: none !important;
   }
+}
  
-  @media (prefers-reduced-motion: reduce){
-    .lang-toggle .lang-thumb,
-    .faq-plus,
-    .faq-a,
-    .faq-list.switching .faq-q-text,
-    .faq-list.switching .faq-a-inner{
-      transition: none !important;
-    }
-  }
  
-  @media (max-width: 560px){
-    .section{ padding: 88px 20px; }
-    .section-head{ align-items: flex-start; }
-    .faq-a-inner{ padding-left: 46px; }
-    html[dir="rtl"] .faq-a-inner{ padding-right: 46px; }
-  }
 
 
 /* ============ WHATSAPP CTA ============ */
@@ -577,12 +616,19 @@ button{font-family:inherit; background:none; border:none; color:inherit; cursor:
 .loc-block{ margin-bottom:26px; font-size:15px; line-height:1.9; color:var(--taupe); }
 .loc-block b{ color:var(--ivory); font-weight:500; display:block; margin-bottom:4px; }
 .loc-map{
-  aspect-ratio:4/3.4; border-radius:6px; position:relative; overflow:hidden;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(212,175,114,.3), transparent 55%),
-    radial-gradient(circle at 70% 70%, rgba(201,139,139,.28), transparent 55%),
-    linear-gradient(160deg,#161311,#060605);
-  border:1px solid var(--line);
+    aspect-ratio:4/3.4;
+    border-radius:6px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+}
+
+.loc-map iframe{
+    width:100%;
+    height:100%;
+    display:block;
+    border:0;
+    filter:saturate(.8) contrast(1.05);
 }
 .loc-pin{ position:absolute; top:46%; left:52%; width:14px; height:14px; border-radius:50%; background:var(--champagne);
   box-shadow:0 0 0 0 rgba(212,175,114,.6); animation:pulse 2.4s infinite; }
@@ -742,6 +788,8 @@ footer{ padding:60px 7vw 40px; display:flex; justify-content:space-between; alig
   }
 
 }
+
+
 </style>
 </head>
 <body>
@@ -868,15 +916,26 @@ footer{ padding:60px 7vw 40px; display:flex; justify-content:space-between; alig
 </section>
 
 <!-- FAQ -->
+
 <section class="section" id="faq">
   <div class="section-inner">
     <div class="section-head reveal">
-      <h2 class="section-title serif">Beauty,<br><i>Explained.</i></h2>
-      <p class="section-desc">Answers, translated with the same care as your service.</p>
+      <div class="section-head-text">
+        <h2 class="section-title serif">Beauty,<br><i>Explained.</i></h2>
+        <p class="section-desc">Answers, translated with the same care as your service.</p>
+      </div>
+ 
+      <div class="lang-toggle" id="langToggle" data-lang="en" role="group" aria-label="Language">
+        <span class="lang-thumb" aria-hidden="true"></span>
+        <button type="button" id="btnEn" aria-pressed="true">EN</button>
+        <button type="button" id="btnAr" aria-pressed="false"><span class="lang-ar-label">عربي</span></button>
+      </div>
     </div>
+ 
     <div class="faq-list" id="faqList"></div>
   </div>
 </section>
+ 
 
 <!-- WHATSAPP CTA -->
 <section style="padding:60px 0 160px;">
@@ -913,7 +972,17 @@ footer{ padding:60px 7vw 40px; display:flex; justify-content:space-between; alig
           <a href="https://wa.me/971558992914" class="phone-link">055 899 2914</a>
         </div>
       </div>
-      <div class="loc-map reveal"><div class="loc-pin"></div></div>
+      <div class="loc-map reveal">
+    <iframe
+        src=https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d286.90474953190324!2d55.2505915040511!3d25.043918630559357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6fd816792cc1%3A0xfbf90d0b48c0d19a!2sMike%20%26%20Kals%20Ladies%20Salon!5e0!3m2!1sen!2slb!4v1786828145262!5m2!1sen!2slb" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
     </div>
   </div>
 </section>
@@ -1247,12 +1316,11 @@ FAQS.forEach(([q,a],i)=>{
   });
 });
 */
+ 
 (function () {
-  const CONTENT = {
-    en: {
-      title: 'Beauty,<br><i>Explained.</i>',
-      desc: 'Answers, translated with the same care as your service.',
-      faqs: [
+  try {
+    const FAQ_CONTENT = {
+      en: [
         ['How do I know which hair color suits me?',
         "We don't choose a color from a photo alone. We consider your skin tone, eye color, hair condition, current color, and lifestyle, then recommend a shade that suits you and can be achieved safely on your hair."],
         ['Can I get the exact hair color from a photo?',
@@ -1273,12 +1341,8 @@ FAQS.forEach(([q,a],i)=>{
         'We strongly recommend it for major transformations, color correction, complex balayage, hair extensions, and bridal looks. A consultation helps us determine the result, timing, cost, and the right plan before we begin.'],
         ['Can you decline to perform a service I request?',
         "Yes, if we believe a service could seriously damage your hair or the desired result isn't realistic in a single session. Our goal isn't just for your hair to look beautiful when you leave the salon, but for it to stay healthy and beautiful afterward too."],
-      ]
-    },
-    ar: {
-      title: 'الجمال،<br><i>موضّح.</i>',
-      desc: 'إجابات، مُترجمة بالعناية نفسها التي تحظى بها خدمتك.',
-      faqs: [
+      ],
+      ar: [
         ['كيف أعرف أي لون شعر يناسبني؟',
         'لا نختار اللون من الصورة فقط. نأخذ بعين الاعتبار لون البشرة، لون العينين، حالة الشعر، اللون الحالي ونمط حياتك، ثم نقترح الدرجة التي تناسبك ويمكن تنفيذها بأمان على شعرك.'],
         ['هل يمكنني الحصول على نفس لون الشعر الموجود في الصورة؟',
@@ -1300,76 +1364,76 @@ FAQS.forEach(([q,a],i)=>{
         ['هل يمكنكم رفض تنفيذ خدمة أطلبها؟',
         'نعم، إذا رأينا أن الخدمة قد تُلحق ضرراً كبيراً بشعرك أو أن النتيجة المطلوبة غير واقعية ضمن جلسة واحدة. هدفنا ليس فقط أن يبدو شعرك جميلاً عند مغادرتك الصالون، بل أن يبقى صحياً وجميلاً بعد ذلك أيضاً.'],
       ]
+    };
+ 
+    const faqLangList     = document.getElementById('faqList');
+    const faqLangToggleEl = document.getElementById('langToggle');
+    const faqLangBtnEn    = document.getElementById('btnEn');
+    const faqLangBtnAr    = document.getElementById('btnAr');
+ 
+    if (!faqLangList || !faqLangToggleEl || !faqLangBtnEn || !faqLangBtnAr) {
+      console.warn('FAQ language toggle: بعض العناصر غير موجودة، تم تجاهل التفعيل.');
+      return;
     }
-  };
-const faqList  = document.getElementById('faqList');
-const faqTitle = document.getElementById('faqTitle');
-const faqDesc  = document.getElementById('faqDesc');
-const toggle   = document.getElementById('langToggle');
-const btnEn    = document.getElementById('btnEn');
-const btnAr    = document.getElementById('btnAr');
  
-if (!faqList || !faqTitle || !faqDesc || !toggle || !btnEn || !btnAr) {
-    console.warn('FAQ toggle: عناصر ناقصة، تم تجاهل التشغيل بدون التأثير على باقي الصفحة.');
-    return; // ما بيكمل، وما بيرمي خطأ يوقف باقي السكربتات
-  }
-let currentLang = 'en';
+    let faqLangCurrent = 'en';
  
-function renderFaqs(lang){
-  faqList.innerHTML = '';
-  CONTENT[lang].faqs.forEach(([q, a], i) => {
-    const item = document.createElement('div');
-    item.className = 'faq-item';
-    item.innerHTML = `
-      <button class="faq-q">
-        <span class="faq-num">${String(i + 1).padStart(2, '0')}</span>
-        <span class="faq-q-text">${q}</span>
-        <span class="faq-plus">+</span>
-      </button>
-      <div class="faq-a"><div class="faq-a-inner">${a}</div></div>
-    `;
-    faqList.appendChild(item);
+    function faqLangRender(lang){
+      faqLangList.innerHTML = '';
+      FAQ_CONTENT[lang].forEach(([q, a], i) => {
+        const item = document.createElement('div');
+        item.className = 'faq-item';
+        item.innerHTML = `
+          <button class="faq-q">
+            <span class="faq-num">${String(i + 1).padStart(2, '0')}</span>
+            <span class="faq-q-text">${q}</span>
+            <span class="faq-plus">+</span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">${a}</div></div>
+        `;
+        faqLangList.appendChild(item);
  
-    const btn = item.querySelector('.faq-q');
-    const panel = item.querySelector('.faq-a');
-    btn.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      faqList.querySelectorAll('.faq-item.open').forEach(o => {
-        o.classList.remove('open');
-        o.querySelector('.faq-a').style.maxHeight = null;
+        const btn = item.querySelector('.faq-q');
+        const panel = item.querySelector('.faq-a');
+        btn.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+          faqLangList.querySelectorAll('.faq-item.open').forEach(o => {
+            o.classList.remove('open');
+            o.querySelector('.faq-a').style.maxHeight = null;
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+          }
+        });
       });
-      if (!isOpen) {
-        item.classList.add('open');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
-    });
-  });
-}
-
-function setLanguage(lang){
-  if (lang === currentLang) return;
-  currentLang = lang;
+    }
  
-  toggle.dataset.lang = lang;
-  btnEn.setAttribute('aria-pressed', String(lang === 'en'));
-  btnAr.setAttribute('aria-pressed', String(lang === 'ar'));
+    function faqLangSet(lang){
+      if (lang === faqLangCurrent) return;
+      faqLangCurrent = lang;
  
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      faqLangToggleEl.dataset.lang = lang;
+      faqLangBtnEn.setAttribute('aria-pressed', String(lang === 'en'));
+      faqLangBtnAr.setAttribute('aria-pressed', String(lang === 'ar'));
  
-  faqList.classList.add('switching');
-  window.setTimeout(() => {
-    faqTitle.innerHTML = CONTENT[lang].title;
-    faqDesc.textContent = CONTENT[lang].desc;
-    renderFaqs(lang);
-    faqList.classList.remove('switching');
-  }, 160);
-}
-
-btnEn.addEventListener('click', () => setLanguage('en'));
-btnAr.addEventListener('click', () => setLanguage('ar'));
-
-  renderFaqs('en');
+      faqLangList.classList.add('switching');
+      window.setTimeout(() => {
+        // فقط قسم الأسئلة يتغير اتجاهه — مش الصفحة كلها
+        faqLangList.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        faqLangRender(lang);
+        faqLangList.classList.remove('switching');
+      }, 160);
+    }
+ 
+    faqLangBtnEn.addEventListener('click', () => faqLangSet('en'));
+    faqLangBtnAr.addEventListener('click', () => faqLangSet('ar'));
+ 
+    faqLangRender('en');
+ 
+  } catch (err) {
+    console.error('FAQ language toggle error:', err);
+  }
 })();
 
 
